@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, session,redirect
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt  # For password hashing
 from models import db, User
@@ -9,6 +10,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # Secret key for session management
 bcrypt = Bcrypt(app)
 db.init_app(app)
+CORS(app)
 
 # Routes for APIs
 
