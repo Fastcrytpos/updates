@@ -3,6 +3,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt  # For password hashing
 from models import db, User
+from .mod import Board
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -11,6 +12,7 @@ app.config['SECRET_KEY'] = 'your_secret_key_here'  # Secret key for session mana
 bcrypt = Bcrypt(app)
 db.init_app(app)
 CORS(app)
+board_instance = Board()
 
 # Routes for APIs
 
@@ -71,6 +73,19 @@ def profile():
         }), 200
     else:
         return jsonify({'message': 'Authentication required to access this resource.'}), 401
+
+
+@app.route("/board", methods=['GET'])
+def get_game_board():
+    if 'user_id' in session:
+        # Example: Return the game board as JSON
+        board = board_instance.get_board()
+        return jsonify(board), 200
+    else:
+        return jsonify({'message': 'Authentication required to access the game board.'}), 401
+
+
+
 
 if __name__ == '__main__':
     with app.app_context():
