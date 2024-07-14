@@ -1,17 +1,20 @@
 import React from 'react'
+import backgroundImageee from "../assets/game.png";
 
 function Game() {
   return (
     <div
     style={{
-      backgroundImage: `url("../assets/antonio-alcantara-DWIbVgYzu6U-unsplash (1).jpg")`,
+      backgroundImage: `url(${backgroundImageee})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      height: '100vh', // Add a height to the div to make it visible
-      width: '100vw', // Add a width to the div to make it visible
+      height: '100vh',
+      width: '100vw',
     }}
-    >Game</div>
+    ><button type="submit" className="buttonsubmit"><b>CLICK TO PLAY</b></button>
+    </div>
+    
   )
 }
 

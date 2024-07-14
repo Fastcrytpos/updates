@@ -9,9 +9,6 @@ function Signup() {
   const [Password,setPassword]=useState()
   const [Email,setEmail]=useState()
   const navigate = useNavigate()
-
-
-
   
   function handlesubmit(e){
     e.preventDefault()
