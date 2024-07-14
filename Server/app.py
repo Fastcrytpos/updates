@@ -135,6 +135,7 @@ def get_game_board():
             Move_piece.move_piece(board, computer_piece, computer_start_row, computer_start_col, computer_end_row, computer_end_col)
             computer_move_message = f'computer moved {computer_piece} from {computer_start_row},{computer_start_col} to {computer_end_row},{computer_end_col}'
             
+            session['board'] = board
             
             # Combine the messages and board into a single JSON response
             response = {
