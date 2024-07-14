@@ -3,7 +3,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt  # For password hashing
 from models import db, User
-from .mod import Board
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -12,7 +12,7 @@ app.config['SECRET_KEY'] = 'your_secret_key_here'  # Secret key for session mana
 bcrypt = Bcrypt(app)
 db.init_app(app)
 CORS(app)
-board_instance = Board()
+# board_instance = Board()
 
 # Routes for APIs
 
