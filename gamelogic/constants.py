@@ -1,0 +1,2 @@
+ANSI_MAGENTA = '\u001b[35m'
+ANSI_RESET = '\u001b[0m'
