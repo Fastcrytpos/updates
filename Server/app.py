@@ -3,11 +3,11 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt  # For password hashing
 from models import db, User
-from mod.player import Player
-from mod.board import Board
-from mod.movepiece import Move_piece
-from mod.computer import ComputerMove
-from mod.constants import *
+
+from board import Board
+from movepiece import Move_piece
+from computer import ComputerMove
+
 
 
 
@@ -88,6 +88,7 @@ def get_game_board():
     board=game.board
     # if 'user_id' in session:
     if request.method=='GET':
+        session['board'] = board
         # Example: Return the game board as JSON
         return jsonify(board), 200
     
@@ -98,6 +99,7 @@ def get_game_board():
         start_col = data.get('start_col')
         end_row = data.get('end_row')
         end_col = data.get('end_col')
+        board =session["board"]
 
         if not end_col or not end_row or not start_row or not start_col:
              return jsonify({'message': 'One of the values is missing'}), 400
@@ -132,7 +134,8 @@ def get_game_board():
             computer_piece,computer_start_row, computer_start_col, computer_end_row, computer_end_col = ComputerMove.get_computer_move(board)
             Move_piece.move_piece(board, computer_piece, computer_start_row, computer_start_col, computer_end_row, computer_end_col)
             computer_move_message = f'computer moved {computer_piece} from {computer_start_row},{computer_start_col} to {computer_end_row},{computer_end_col}'
-
+            
+            
             # Combine the messages and board into a single JSON response
             response = {
                 'player_move': player_move_message,
