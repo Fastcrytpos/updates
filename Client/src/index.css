@@ -5,7 +5,7 @@
     border-bottom: 100px solid transparent;
   }
 
-  .buttonsubmit{
+.buttonsubmit{
     width:40%;
     font-weight: 900;
     align-self: center;
@@ -16,6 +16,14 @@
     border-radius: 8px;
     
   }
-  
+.cell{
+  /* background-color: aqua; */
+  border: '10px solid black',
+}
+.cell:hover{
+  border-color: pink;
+}
 
- 
+.cell:active{
+  border-color: blue;
+}
