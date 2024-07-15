@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Col from "./Col";
-import backgroundImageee from "../assets/game.png";
+import backgroundImageee from "../assets/beach.jpg"
 
 function Game() {
   const [board, setBoard] = useState([]);
@@ -26,8 +26,15 @@ function Game() {
   }
 
   return (
-    <div className='gamepage'>
-      <div>
+    <div style={{
+        backgroundImage: `url(${backgroundImageee})`,
+        backgroundSize: '100%',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        height: '100vh',
+        width: '100vw',
+      }}>
+      <div >
         <div
           style={{
             width: "100%",
@@ -44,9 +51,11 @@ function Game() {
             <button className="w3-btn w3-round w3-teal w3-margin-left">New Game</button>
           </div>
         </div>
-      </div>
-      <div >
+      </div  >
+      <div className="flex items-center justify-center h-screen" >
+      <div>
         {board.map((row, index) => <Col key={index} rowindex={index} row={row} />)}
+      </div>
       </div>
     </div>
   );
