@@ -82,15 +82,20 @@ def profile():
         return jsonify({'message': 'Authentication required to access this resource.'}), 401
 
 
-@app.route("/game", methods=['GET','POST'])
+@app.route("/game", methods=['GET'])
 def get_game_board():
     game = Board()
     board=game.board
-    # if 'user_id' in session:
-    if request.method=='GET':
-        session['board'] = board
+    # # if 'user_id' in session:
+    # if request.method=='GET':
+        # session['board'] = board
         # Example: Return the game board as JSON
-        return jsonify(board), 200
+    
+    return jsonify(board), 200
+    
+
+@app.route("/postmove", methods=['POST'])
+def post_move():
     
     if request.method=='POST':
         data = request.get_json()
@@ -99,7 +104,8 @@ def get_game_board():
         start_col = data.get('start_col')
         end_row = data.get('end_row')
         end_col = data.get('end_col')
-        board =session["board"]
+        board =data.get('board')
+        print(board)
 
         if not end_col or not end_row or not start_row or not start_col:
              return jsonify({'message': 'One of the values is missing'}), 400
@@ -135,7 +141,7 @@ def get_game_board():
             Move_piece.move_piece(board, computer_piece, computer_start_row, computer_start_col, computer_end_row, computer_end_col)
             computer_move_message = f'computer moved {computer_piece} from {computer_start_row},{computer_start_col} to {computer_end_row},{computer_end_col}'
             
-            session['board'] = board
+            # session['board'] = board
             
             # Combine the messages and board into a single JSON response
             response = {

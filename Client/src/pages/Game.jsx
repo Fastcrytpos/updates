@@ -5,9 +5,6 @@ import backgroundImageee from "../assets/beach.jpg"
 function Game() {
   const [board, setBoard] = useState([]);
 
-  useEffect(() => {
-    getBoard();
-  }, []);
 
   function getBoard() {
     const myHeaders = new Headers();
@@ -49,12 +46,25 @@ function Game() {
           <div>
             <button className="w3-btn w3-round w3-red">Logout</button>
             <button className="w3-btn w3-round w3-teal w3-margin-left">New Game</button>
+            <button onClick={getBoard} className="w3-btn w3-round w3-teal ">START</button>
           </div>
         </div>
       </div  >
       <div className="flex items-center justify-center h-screen" >
       <div>
-        {board.map((row, index) => <Col key={index} rowindex={index} row={row} />)}
+        {board.map((row, index) => 
+        
+        <Col key={index}
+              rowindex={index} 
+              row={row} 
+              board={board} 
+              setBoard={setBoard}
+        
+        />
+        
+        )}
+
+
       </div>
       </div>
     </div>

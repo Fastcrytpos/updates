@@ -52,7 +52,7 @@ class Board:
 
         
             
-# if __name__=="__main__":
-#     game=Board()
-#     game.board[0][1]='k'
-#     game.print_board()
+if __name__=="__main__":
+    game=Board()
+    game.board[0][1]='k'
+    game.print_board()
